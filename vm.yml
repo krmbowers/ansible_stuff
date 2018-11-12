@@ -1,0 +1,64 @@
+- name: Create  VM
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: Create resource group
+    azure_rm_resourcegroup:
+      name: table2kbvmrg
+      location: canadaeast
+  - name: Create virtual network
+    azure_rm_virtualnetwork:
+      resource_group: table2kbvmrg
+      name: table2kbvnet
+      address_prefixes: "10.0.0.0/16"
+  - name: Add subnet
+    azure_rm_subnet:
+      resource_group: table2kbvmrg
+      name: table2kbSubnet
+      address_prefix: "10.0.1.0/24"
+      virtual_network: table2kbvnet
+  - name: Create public IP address
+    azure_rm_publicipaddress:
+      resource_group: table2kbvmrg
+      allocation_method: Static
+      name: table2kbpublicIP
+    register: output_ip_address
+  - name: Output public IP 
+    debug:
+      msg: "Public IP is {{ output_ip_address.state.ip_address }}."
+  - name: Create Network Security Group that allows SSH
+    azure_rm_securitygroup:
+      resource_group: table2kbvmrg 
+      name: table2kbsggroup
+      rules:
+        - name: SSH
+          protocol: Tcp
+          destination_port_range: 22
+          access: Allow
+          priority: 1001
+          direction: Inbound
+  - name: Create virtual network inteface card
+    azure_rm_networkinterface:
+      resource_group: table2kbvmrg
+      name: table2kbnic
+      virtual_network: table2kbvnet
+      subnet: table2kbsubnet
+      public_ip_name: table2kbpublicIP
+      security_group: table2kbsggroup
+  - name: Create VM
+    azure_rm_virtualmachine:
+      resource_group: table2kbvmrg
+      name: table2kbvm
+      vm_size: Standard_DS1_v2
+      admin_username: azureops
+      ssh_password_enabled: false
+      ssh_public_keys:
+        - path: /home/azureops/.ssh/authorized_keys
+          key_data: |
+            {{ lookup('file','/home/azureops/.ssh/id_rsa.pub') }}
+      network_interfaces: table2kbnic
+      image:
+        offer: UbuntuServer
+        publisher: Canonical
+        sku: '16.04-LTS'
+        version: latest
