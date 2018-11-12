@@ -6,6 +6,7 @@
       azure_rm_resourcegroup:
         name: table2kbvmrg
         state: absent
+        force: true
 
 
 
