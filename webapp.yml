@@ -18,4 +18,10 @@
          name: table2kbappplan
          is_linux: true
          sku: S1
-         number_of_workers: 1       
+         number_of_workers: 1
+       frameworks:
+         - name: "java"
+           version: "8"
+           settings:
+             java_container: tomcat
+             java_container_version: 8.5       
