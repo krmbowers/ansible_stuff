@@ -60,7 +60,7 @@
       admin_username: azureops
       ssh_password_enabled: false
       ssh_public_keys:
-        - path: /home/azureops/.ssh/id_rsa
+        - path: /home/azureops/.ssh
           key_data: |
             {{ lookup('file','/home/azureops/.ssh/id_rsa.pub') }}
       network_interfaces: "{{nic}}"
