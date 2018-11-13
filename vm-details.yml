@@ -27,7 +27,7 @@ name: Create public IP address
     ssh_public_keys:
       - path: /home/azureops/.ssh/authorized_keys
         key_data: |
-           {{ lookup('file', '/home/azureops/.ssh/id_rsa.pub') }}
+          {{ lookup('file', '/home/azureops/.ssh/id_rsa.pub') }}
     network_interfaces: "{{nic_name}}{{vm.name}}"
     image:
       offer: UbuntuServer
