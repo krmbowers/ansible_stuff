@@ -25,9 +25,9 @@
     admin_username: azureops
     ssh_password_enabled: false
     ssh_public_keys:
-      path: '/home/azureops/.ssh/authorized_keys'
-      key_data: '/home/azureops/.ssh/id_rsa.pub'
-    network_interfaces: "{{nic_name}}{{vm.name}} "
+      - path: '/home/azureops/.ssh/authorized_keys'
+        key_data: '/home/azureops/.ssh/id_rsa.pub'
+    network_interfaces: "{{nic_name}}{{vm.name}}"
     image:
       offer: UbuntuServer
       publisher: Canonical
