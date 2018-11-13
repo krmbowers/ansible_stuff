@@ -1,0 +1,17 @@
+- name: Create VM in RG
+  hosts: localhost
+  connection: local
+  vars:
+    rg: table2kbvmrg
+    vnet: table2kbvnet
+    subnet: table2kbsubnet
+    ip: table2kbpublicip
+    sg: table2kbsggroup
+    nic: table2kbnic
+  tasks:
+  - name: Create resource group
+    azure_rm_resourcegroup:
+      name: "{{rg}}"
+      location: canadaeast
+      state: absent
+      force: true

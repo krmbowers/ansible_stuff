@@ -1,12 +1,13 @@
----
 - hosts: localhost
   connection: local
-  tasks: 
-    - name: Create a resource
+  vars:
+    group: table2kbwebapprg
+    webapp_name: table2kbwebapp
+    location: canadaeast
+  tasks:
+    - name: create rg
       azure_rm_resourcegroup:
-        name: table2kbwebapp
+        name: "{{group}}"
+        location: "{{location}}"
         state: absent
         force: true
-
-
-

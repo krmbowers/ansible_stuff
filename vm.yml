@@ -1,11 +1,11 @@
-- name: Create  VM
+- name: Create VM in RG
   hosts: localhost
   connection: local
   vars:
     rg: table2kbvmrg
     vnet: table2kbvnet
-    subnet: table2kbSubnet
-    ip: table2kbpublicIP
+    subnet: table2kbsubnet
+    ip: table2kbpublicip
     sg: table2kbsggroup
     nic: table2kbnic
   tasks:
@@ -21,7 +21,7 @@
   - name: Add subnet
     azure_rm_subnet:
       resource_group: "{{rg}}"
-      name: "{{sg}}"
+      name: "{{subnet}}"
       address_prefix: "10.0.1.0/24"
       virtual_network: "{{vnet}}"
   - name: Create public IP address

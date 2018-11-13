@@ -4,7 +4,7 @@
   tasks: 
     - name: Create a resource
       azure_rm_resourcegroup:
-        name: table2kbvmrg
+        name: table2kbansibletest
         state: absent
         force: true
 
