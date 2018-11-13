@@ -1,7 +1,6 @@
 prefix: table2kb
 group_name: "{{prefix}}vmrg"
-vnet: "{{prefix}}vmrg"
-nsg_name: "{{prefix}}vmrg"
+vnet: "{{prefix}}vnet"
+nsg_name: "{{prefix}}nsg"
 subnet_name: "{{prefix}}subnet"
 nic_name: "{{prefix}}nic"
-publicip: "{{prefix}}publicip"
