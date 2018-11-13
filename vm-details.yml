@@ -1,4 +1,4 @@
-- name: Create public IP address
+name: Create public IP address
   azure_rm_publicipaddress:
     resource_group: "{{group_name}}"
     allocation_method: Static
@@ -25,8 +25,9 @@
     admin_username: azureops
     ssh_password_enabled: false
     ssh_public_keys:
-      - path: '/home/azureops/.ssh/authorized_keys'
-        key_data: '/home/azureops/.ssh/id_rsa.pub'
+      - path: /home/azureops/.ssh/authorized_keys
+        key_data: |
+           {{ lookup('file', '/home/azureops/.ssh/id_rsa.pub') }}
     network_interfaces: "{{nic_name}}{{vm.name}}"
     image:
       offer: UbuntuServer
