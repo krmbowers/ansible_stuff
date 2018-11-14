@@ -7,5 +7,5 @@
         state: present
         resource_group_name: table2kbwebapprg2
         location: canadaeast
-        template_link: ' https://raw.githubusercontent.com/krmbowers/arm/master/template.json'
+        template_link: 'https://raw.githubusercontent.com/krmbowers/arm/master/template.json'
         parameters_link: 'https://raw.githubusercontent.com/krmbowers/arm/master/parameters.json'
