@@ -1,0 +1,2 @@
+az login --service-principal --username 628ae9c9-c379-4d87-9291-2fab6f95eb5b --password 360ce936-a599-4a10-9e94-cb11112d6b89 --tenant a7288f82-b9ee-4329-925d-f67e405ec2a4
+az group delete -n $GroupName -y
